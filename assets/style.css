@@ -1,0 +1,20 @@
+div#cards_board{
+	max-width: 600px;
+	padding:24px;
+	margin:0px auto;
+}
+
+div#cards_board > div{
+	background: url(img/back1.png) no-repeat;
+  	background-size: cover;
+  	background-position: center;
+	width:132px;
+	height:200px;
+	float:left;
+	margin:10px;
+	padding:20px;
+	font-size:64px;
+	cursor:pointer;
+	text-align:center;
+}
+
