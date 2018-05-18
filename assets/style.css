@@ -1,11 +1,31 @@
+.menu{
+	background: #0A64A4;
+	color: #FFF;
+	width: 1024px;
+	margin: 0 auto;
+	border-radius: 10px;
+}
+
+.menu .header {
+	font-size: 48px;
+	text-align: center;
+}
+
+.menu .difficulty{
+	margin-left:    20px;
+	padding-bottom: 20px;
+}
+.menu .difficulty .diff_head{
+	font-size: 24px;
+}
+
 div#cards_board{
-	max-width: 600px;
-	padding:24px;
-	margin:0px auto;
+	max-width: 770px;
+	margin:0 auto;
 }
 
 div#cards_board > div{
-	background: url(img/back1.png) no-repeat;
+	background: url(img/back2.png) no-repeat;
   	background-size: cover;
   	background-position: center;
 	width:132px;
