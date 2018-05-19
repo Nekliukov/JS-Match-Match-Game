@@ -77,7 +77,8 @@ function cards_flip_tile(tile, val, cards_num){
 	if(tile.innerHTML == "" && cards_values.length < 2){
 	tile.style.background = 'url('+val+') no-repeat';
 	tile.style.backgroundSize = 'cover';
-	tile.style.backgroundPosition = 'center';
+    tile.style.backgroundPosition = 'center';
+	tile.innerHTML = val;
 	if(cards_values.length == 0){
 		cards_values.push(val);
 		cards_tile_ids.push(tile.id);
