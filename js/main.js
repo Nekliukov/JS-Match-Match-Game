@@ -1,10 +1,11 @@
-var ca = ['A','B','C','D','E','F','G','H'];
+//var data = ['A','B','C','D','E','F','G','H'];
+var data = [];
 var cards_array=[];
 var cards_values = [];
 var cards_tile_ids = [];
 var tiles_flipped = 0;
 
-var card_back = 'assets/img/back1.png';
+var card_back = 'assets/img/back1.jpg';
 
 Array.prototype.shuffle_cards = function(){
     var i = this.length, j, temp;
@@ -34,19 +35,28 @@ function set_diff(){
 	}
 }
 
+function load_faces(dir) {
+	var files = [];
+	for(var i=1; i<=54; i++)
+		files.push(dir+'/'+i+'.jpg');
+	return files;
+  }
+
 function set_back(id){
 	var element = document.getElementById(id);	
 	card_back = element.getAttribute('src');
 }
 
 function start(){
+	data = load_faces("assets/img/faces");
 	new_board(set_diff(), card_back);
 }
 
 function new_board(cards_num, card_back){
 	tiles_flipped = 0;
 	var output = '';
-	cards_array = ca.slice();
+	data.shuffle_cards();
+	cards_array = data.slice();
 	cards_array.resize(cards_num, cards_array);
 	cards_array = cards_array.concat(cards_array);
 	cards_array.shuffle_cards();
@@ -65,8 +75,9 @@ function new_board(cards_num, card_back){
 
 function cards_flip_tile(tile, val, cards_num){
 	if(tile.innerHTML == "" && cards_values.length < 2){
-	tile.style.background = '#FFF';
-	tile.innerHTML = val;
+	tile.style.background = 'url('+val+') no-repeat';
+	tile.style.backgroundSize = 'cover';
+	tile.style.backgroundPosition = 'center';
 	if(cards_values.length == 0){
 		cards_values.push(val);
 		cards_tile_ids.push(tile.id);
