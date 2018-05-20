@@ -9,19 +9,33 @@
     <body>
         <div class="menu">
             <div class="header">Match-Math-Game</div>
+            <hr>
+            <form class="enter_info">
+                <div class="header2" >Enter your info: </div>
+                <p>Name: <input type="text" class="data1"></p>
+                <p>Surname: <input type="text" class="data2"></p>
+                <p>E-mail: <input type="text" class="data3"></p>
+            </form> 
+
             <form class="difficulty">
-                <div class="diff_head">Choose difficulty: </div>
-                <p><input type="radio" name="dif" value="4">Easy</p>
-                <p><input type="radio" name="dif" value="6">Normal</p>
-                <p><input type="radio" name="dif" value="8">Hard</p>
+                <div class="header2">Choose difficulty: </div>
+                <p><input type="radio" name="dif" value="5">Easy</p>
+                <p><input type="radio" name="dif" value="10">Normal</p>
+                <p><input type="radio" name="dif" value="15">Hard</p>
             </form>
+  
             <div class="backs">
+                <div class="header2">Select cards back: </div>
                 <img  id = "back1" class="set_back" src="assets/img/back1.jpg"  onclick="set_back('back1')">
                 <img  id = "back2" class="set_back" src="assets/img/back2.jpg"  onclick="set_back('back2')">
                 <img  id = "back3" class="set_back" src="assets/img/back3.jpg"  onclick="set_back('back3')"> 
                 <img  id = "back4" class="set_back" src="assets/img/back4.jpg"  onclick="set_back('back4')">  
-            </div> 
-            <button class="button_start" onclick="start()">Start</button>
+            </div>
+            <hr>
+            <button class="action_button" onclick="get_info()">Rules</button>
+            <button class="action_button" onclick="start()">Start</button>
+            <div class="timer">Timer: <div name="stopwatch" id="timer" class="sec">0</div> seconds</div>
+            
         </div>
         <div id="cards_board"></div>
     </body>

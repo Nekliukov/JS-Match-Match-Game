@@ -7,6 +7,27 @@ var tiles_flipped = 0;
 
 var card_back = 'assets/img/back1.jpg';
 
+function get_info(){
+	alert('The cards are shuffled and laid on the table, face down\n'+	
+		  'A player turns over two cards (one at a time) and keeps\n'+
+		  'them if they match numbers. When a player turns over two\n'+
+		  'cards that do not match numbers, those cards are turned \n'+
+		  'face down again. When all the pairs have been found, the player wins');
+}
+
+var interval_id;
+
+function set_time(){
+    sec = 0;
+	interval_id=setInterval(tick, 1000);
+}
+
+function tick(){
+    sec++;
+    document.getElementById("timer").
+		childNodes[0].nodeValue = sec;
+}
+
 Array.prototype.shuffle_cards = function(){
     var i = this.length, j, temp;
     while(--i > 0){
@@ -48,7 +69,11 @@ function set_back(id){
 }
 
 function start(){
+	document.getElementById('timer').innerHTML = '0';
+	clearInterval(interval_id);
+	set_time();
 	data = load_faces("assets/img/faces");
+	document.getElementById('cards_board').style.display = 'block';
 	new_board(set_diff(), card_back);
 }
 
@@ -92,7 +117,11 @@ function cards_flip_tile(tile, val, cards_num){
             cards_tile_ids = [];
 			// Check to see if the whole board is cleared
 			if(tiles_flipped == cards_array.length){
-				alert("Board cleared... generating new board");
+				var time =document.getElementById('timer').innerHTML;
+				alert("Board cleared... Your time: "+time.innerHTML+" seconds");
+				time.innerHTML = '0';
+				clearInterval(interval_id);
+				document.getElementById('cards_board').style.display = 'none';
 				document.getElementById('cards_board').innerHTML = "";
 				new_board(set_diff(), card_back);
 			}
