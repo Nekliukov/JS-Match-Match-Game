@@ -1,24 +1,27 @@
 body{
-	background: #1b0202;
+	background: url(../assets/img/bg.jpg) no-repeat;
+	background-attachment: fixed;
+	background-size: cover;
+	background-position: center;
 }
 .menu{
-	background: #000000;
+	background: rgba(0,0,0,0.6);
 	color: #FFF;
 	width: 1024px;
-	height: 400px;
+	height: 420px;
 	margin: 0 auto;
 	border-radius: 10px;
 }
 
 .menu .header {
-	font-size: 48px;
+	font-size: 54px;
 	text-align: center;
 }
 
 .menu .difficulty{
 	font-size: 24px;
 	display: inline-block;
-	height: 150px;
+	height: 155px;
 	margin-left:    20px;
 	padding-bottom: 60px;
 }
@@ -29,14 +32,14 @@ body{
 }
 
 div#cards_board{
-	max-width: 980px;
+	width: 980px;
 	margin: 0 auto;
 }
 
 div#cards_board > div{
 	background: blue;
   	background-size: cover;
-  	background-position: center;
+	background-position: center;
 	width:135px;
 	height:200px;
 	float:left;
@@ -50,12 +53,16 @@ div#cards_board > div{
 .backs{
 	display: inline-block;
 	margin-left: 60px;
+	
 }
 .backs .set_back{
-	width: 90px;
-	height: 145px;
+	width: 80px;
+	height: 135px;
 	margin-top: 10px;
 	margin-right: 15px;
+	border-width: 5px;
+	border-style: solid;
+	border-color: transparent;
 	cursor: pointer;
 	background-repeat: no-repeat;
 	background-size: cover;
@@ -99,7 +106,7 @@ div#cards_board > div{
 	 display: inline-block;
 	 color: white;
 	 font-size: 34px;
-	 margin-left: 150px;
+	 margin-left: 70px;
  }
 
  .sec{

@@ -2,6 +2,7 @@
 <html>
     <head>
         <title>Match-Match Game</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8"> 
         <link href="assets/style.css" type="text/css" rel="stylesheet">
         <script src="js/main.js"></script>
     </head>
@@ -12,16 +13,17 @@
             <hr>
             <form class="enter_info">
                 <div class="header2" >Enter your info: </div>
-                <p>Name: <input type="text" class="data1"></p>
-                <p>Surname: <input type="text" class="data2"></p>
-                <p>E-mail: <input type="text" class="data3"></p>
+                <p>Name: <input type="text" class="data1" id="name"></p>
+                <p>Surname: <input type="text" class="data2" id="surname"></p>
+                <p>E-mail: <input type="text" class="data3" id="email"></p>
             </form> 
 
             <form class="difficulty">
                 <div class="header2">Choose difficulty: </div>
-                <p><input type="radio" name="dif" value="5">Easy</p>
-                <p><input type="radio" name="dif" value="10">Normal</p>
-                <p><input type="radio" name="dif" value="15">Hard</p>
+                <p><input type="radio" name="dif" value="2" id="default_dif">Easy</p>
+                <p><input type="radio" name="dif" value="3">Normal</p>
+                <p><input type="radio" name="dif" value="15" >Hard</p>
+                <script>document.getElementById('default_dif').checked=true;</script>
             </form>
   
             <div class="backs">
@@ -35,7 +37,7 @@
             <button class="action_button" onclick="get_info()">Rules</button>
             <button class="action_button" onclick="start()">Start</button>
             <div class="timer">Timer: <div name="stopwatch" id="timer" class="sec">0</div> seconds</div>
-            
+            <button class="action_button" onclick="show_records()">Show records</button>
         </div>
         <div id="cards_board"></div>
     </body>

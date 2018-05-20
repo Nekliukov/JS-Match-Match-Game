@@ -1,4 +1,3 @@
-//var data = ['A','B','C','D','E','F','G','H'];
 var data = [];
 var cards_array=[];
 var cards_values = [];
@@ -16,7 +15,6 @@ function get_info(){
 }
 
 var interval_id;
-
 function set_time(){
     sec = 0;
 	interval_id=setInterval(tick, 1000);
@@ -47,12 +45,42 @@ Array.prototype.resize = function(newSize, defaultValue) {
     this.length = newSize;
 }
 
+Array.prototype.sort_on_value = function(key){
+    this.sort(function(a, b){
+        if(a[key] < b[key]){
+            return -1;
+        }else if(a[key] > b[key]){
+            return 1;
+        }
+        return 0;
+    });
+}
+
 function set_diff(){
 	var difs = document.getElementsByName('dif');
 	for(var i = 0; i < difs.length; i++){
     	if(difs[i].checked){
         	return difs[i].value;
     	}
+	}
+}
+
+function get_diff_str(){
+	var difs = document.getElementsByName('dif');
+	var res;
+	for(var i = 0; i < difs.length; i++){
+    	if(difs[i].checked){
+			res = difs[i].value;
+			break;
+    	}
+	}
+	switch(res) {
+		case difs[0].value: return "Easy: ";
+		break;
+		case difs[1].value: return "Normal: ";
+		break;
+		case difs[2].value: return "Hard: ";
+		break;
 	}
 }
 
@@ -63,16 +91,56 @@ function load_faces(dir) {
 	return files;
   }
 
-function set_back(id){
-	var element = document.getElementById(id);	
+function set_back(id_b){
+	var element = document.getElementById(id_b);	
 	card_back = element.getAttribute('src');
+	var backs = document.getElementsByClassName('set_back');
+	for(var i = 0; i < backs.length; i++){
+    	if(backs[i].getAttribute('id')==id_b){
+        	backs[i].style.borderColor = "#528fe9";
+		}
+		else{
+			backs[i].style.borderColor = "transparent";
+		}
+	}
 }
 
+function check_data(){
+	var surname = document.getElementById('surname').value;
+	var nm = document.getElementById('name').value;
+	var em = document.getElementById('email').value;
+	if (nm==""|| surname =="" || em == "")
+		return 1;
+	else
+		return 0;
+}
+
+function show_records(){ 
+	var str="There are showed all the tryes in the table:\n\n";
+	var records = Object.keys(localStorage)
+		.sort(function(a, b) {
+  			return localStorage[a] - localStorage[b];
+	}) 
+	len = records.length <=10?records.length:10;
+	for (var i=0; i < len; i++) 
+		str+= (i+1)+" | "+localStorage.getItem(records[i])+" sec. <-- "+records[i]+'\n';   
+	alert(str);
+}
+
+// start of the board initializing
 function start(){
+	// checking user's data
+	if(check_data()==1){
+		alert("Error. Fill all the data fully and correctly");
+		return;
+	}
+	//timer setting
 	document.getElementById('timer').innerHTML = '0';
 	clearInterval(interval_id);
 	set_time();
+	// loading card faces from the directory
 	data = load_faces("assets/img/faces");
+	// board creating
 	document.getElementById('cards_board').style.display = 'block';
 	new_board(set_diff(), card_back);
 }
@@ -117,8 +185,20 @@ function cards_flip_tile(tile, val, cards_num){
             cards_tile_ids = [];
 			// Check to see if the whole board is cleared
 			if(tiles_flipped == cards_array.length){
-				var time =document.getElementById('timer').innerHTML;
-				alert("Board cleared... Your time: "+time.innerHTML+" seconds");
+				var time = document.getElementById('timer');
+			
+				var username = localStorage.getItem(get_diff_str()+" "+document.getElementById('surname').value+ " "+
+				document.getElementById('name').value);
+				alert(username);
+				alert(time.innerHTML);
+
+				if (parseInt(username)> parseInt(time.innerHTML) || username==null){
+					localStorage.setItem(get_diff_str()+" "+document.getElementById('surname').value+ " "+
+						document.getElementById('name').value,
+						time.innerHTML);
+				}
+				alert("Board cleared, "+document.getElementById('name').value+
+				"... Your time: "+ time.innerHTML +" seconds.");
 				time.innerHTML = '0';
 				clearInterval(interval_id);
 				document.getElementById('cards_board').style.display = 'none';
