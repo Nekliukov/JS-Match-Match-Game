@@ -189,8 +189,6 @@ function cards_flip_tile(tile, val, cards_num){
 			
 				var username = localStorage.getItem(get_diff_str()+" "+document.getElementById('surname').value+ " "+
 				document.getElementById('name').value);
-				alert(username);
-				alert(time.innerHTML);
 
 				if (parseInt(username)> parseInt(time.innerHTML) || username==null){
 					localStorage.setItem(get_diff_str()+" "+document.getElementById('surname').value+ " "+
